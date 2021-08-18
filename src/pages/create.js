@@ -44,7 +44,9 @@ export default function Create({modalClose,update,selectedNote}) {
             }).then((res) => {
                 update();
                 history.push('/');
-            })
+            });
+
+
             modalClose();
             return;
         }

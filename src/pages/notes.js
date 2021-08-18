@@ -27,7 +27,7 @@ export default function Notes() {
     const classes = useStyles();
     const [modalClose, setModalClose] = React.useState(false);
     const [selectedNote, setSelectedNote] = React.useState(false);
-
+    const [isPending, setIsPending] = useState(true);
 
     const update = () => {
         fetch(PETS, {
@@ -36,7 +36,11 @@ export default function Notes() {
             .then(res => res.json())
             .then(data => {
                 let sortedData = data.sort((a, b) => (a.id < b.id) ? 1 : -1)
-                setPetData(sortedData)
+                setPetData(sortedData);
+                setIsPending(false);
+            })
+            .catch(err =>{
+                console.log(err.message);
             });
 
     }
@@ -47,7 +51,9 @@ export default function Notes() {
     const handleDelete = async (id) => {
         await fetch(`${PET_BY_ID}${id}`, {
             method: 'DELETE'
-        })
+        }).catch(err =>{
+                console.log(err.message);
+            });
         const newNotes = petData.filter(note => note.id !== id);
         setPetData(newNotes);
     }
@@ -63,6 +69,7 @@ export default function Notes() {
     }
     return (
         <Container>
+            {isPending && <div>Loading...</div>}
             <Masonry
                 breakpointCols={breakpoints}
                 className="my-masonry-grid"

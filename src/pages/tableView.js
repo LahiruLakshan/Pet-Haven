@@ -10,7 +10,11 @@ function TableView(props) {
             method: 'GET'
         })
             .then(res => res.json())
-            .then(data => setPetData(data));
+            .then(data => setPetData(data))
+            .catch(err =>{
+                console.log(err.message);
+            });
+
     }, [])
     return (
         <div>

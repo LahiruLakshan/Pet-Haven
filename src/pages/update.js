@@ -34,7 +34,12 @@ function Update() {
             method: 'GET'
         })
             .then(res => res.json())
-            .then(data => setPetsData(data));
+            .then(data => setPetsData(data))
+            .catch(err => {
+                console.log(err.message);
+            });
+
+
     }, []);
 
 
@@ -57,7 +62,9 @@ function Update() {
                 body: JSON.stringify({name: name, description: description})
             }).then((res) => {
                 history.push('/');
-            })
+            }).catch(err => {
+                    console.log(err.message);
+                });
         }
     }
 
@@ -67,8 +74,9 @@ function Update() {
             setShowInputFields(false);
             setSelectedPet(event.target.value);
         }
-        setName(setPetsData.name);
-        setDescription(setPetsData.description)
+        setName(petsData.name);
+        setDescription(petsData.description);
+
     }
 
     useEffect(() => {
