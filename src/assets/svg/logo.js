@@ -4,35 +4,17 @@ import {makeStyles} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     logo:{
-        width:"350px",
-        height:"86.193px",
+        width:"200px",
         [theme.breakpoints.down("md")]: {
-            width:"350px",
-            height:"86.193px"
+            width:"190px",
         },
         [theme.breakpoints.down("sm")]: {
-            width:"350px",
-            height:"86.193px"
+            width:"175px",
         },
         [theme.breakpoints.down("xs")]: {
-            width:"200px",
-            height:"50px"
+            width:"150px",
         },
-    },
-    logoColor:{
-        fill:"#000000",
-        transition:" 1s ease",
-        // [theme.breakpoints.down("xs")]: {
-        //     fill:"#ffffff",
-        // },
-    },
-    setLogoColor:{
-        fill:"#000000",
-        transition:" 1s ease",
-        // [theme.breakpoints.down("xs")]: {
-        //     fill:"#ffffff",
-        // },
-    },
+    }
 
 }));
 
@@ -44,16 +26,16 @@ function Logo(props) {
         <svg
             className={classes.logo}
             xmlns="http://www.w3.org/2000/svg"
-            width={424.07}
-            height={106.245}
+            // width={424.07}
+            // height={106.245}
             viewBox="0 0 424.07 106.245"
             {...props}
         >
             <g data-name="Group 3">
                 <g
                     data-name="Group 1"
-                    fill="#fbd10d"
-                    stroke="#fbd10d"
+                    fill="#000"
+                    stroke="#000"
                     strokeMiterlimit={10}
                 >
                     <path
@@ -105,7 +87,7 @@ function Logo(props) {
                 />
             </g>
         </svg>
-    )
+    );
 }
 
 export default Logo;

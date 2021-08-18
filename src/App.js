@@ -1,48 +1,50 @@
-import './App.css';
-import React from "react";
-import {makeStyles} from "@material-ui/core";
-import NavBar from "./components/NavBar/navBar";
-import Home from "./pages/home/home";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Notes from './pages/notes'
+import Create from './pages/create'
+import { createTheme, ThemeProvider } from '@material-ui/core'
+import {green} from '@material-ui/core/colors'
+import Layout from './components/layout'
+import Update from "./pages/update";
+import TableView from "./pages/tableView";
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    // backgroundColor: "blueviolet",
-    minHeight: "100vh",
-
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#4caf50"
+    },
+    secondary: green
   },
-  navBar:{
-    // backgroundColor:"#a1009f",
-    height: "15vh",
-  },
-  body:{
-    // backgroundColor:"#a1009f",
+  typography: {
+    fontFamily: 'Nunito',
+    fontWeightLight: 400,
+    fontWeightRegular: 500,
+    fontWeightMedium: 600,
+    fontWeightBold: 700,
   }
-}));
+})
 
 function App() {
-
-  const classes = useStyles();
-
   return (
-      <div className={classes.root}
-          // initial={{opacity:0}}
-          // animate={{opacity:1}}
-          // transition={{duration: 1}}
-      >
-
-        <div className={classes.navBar}>
-          <NavBar/>
-        </div>
-        <div className={classes.body}>
-          <Home/>
-        </div>
-        <div className={classes.navBar}>
-
-        </div>
-      </div>
-
+      <ThemeProvider theme={theme} >
+        <Router >
+          <Layout>
+            <Switch>
+              <Route exact path="/">
+                <Notes />
+              </Route>
+              <Route path="/create" >
+                <Create />
+              </Route>
+              <Route path="/update" >
+                <Update />
+              </Route>
+              <Route path="/table" >
+                <TableView/>
+              </Route>
+            </Switch>
+          </Layout>
+        </Router>
+      </ThemeProvider>
   );
 }
 
